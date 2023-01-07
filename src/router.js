@@ -15,6 +15,7 @@ const router = createRouter({
     {
       path: '/coaches/:id',
       component: CoachDetail,
+      props: true, // will pass the value id as a prop to the view
       children: [{ path: 'contact', component: ContactCoach }], // /coaches/c1/contact
     },
     { path: '/register', component: CoachRegistration },
