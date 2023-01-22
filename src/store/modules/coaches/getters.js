@@ -22,7 +22,7 @@ export default {
 
     const currentTimestamp = new Date().getTime();
 
-    // Check if more than a minute ago
+    // Check if more than a minute ago, returns a boolean value
     return (currentTimestamp - lastFetch) / 1000 > 60;
   },
 };

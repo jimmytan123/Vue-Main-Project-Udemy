@@ -12,9 +12,11 @@ import BaseDialog from './components/ui/BaseDialog.vue';
 
 const app = createApp(App);
 
+// Register router and Vuex store
 app.use(router);
 app.use(store);
 
+// Registering global components
 app.component('base-card', BaseCard);
 app.component('base-button', BaseButton);
 app.component('base-badge', BaseBadge);

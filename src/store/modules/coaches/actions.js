@@ -18,6 +18,7 @@ export default {
       }
     );
 
+    // We are not interested in the response data for the Put request for now...
     // const responseData = await response.json();
 
     if (!response.ok) {
@@ -44,6 +45,7 @@ export default {
 
     const coaches = [];
 
+    // Needs to format the response data from Firebase
     for (const key in responseData) {
       const coach = {
         id: key,
