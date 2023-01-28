@@ -10,8 +10,11 @@ export default {
       areas: data.areas,
     };
 
+    const token = context.rootGetters.token;
+
+    // https://firebase.google.com/docs/database/rest/auth#authenticate_with_an_id_token
     const response = await fetch(
-      `https://vue-coach-app-9f21c-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+      `https://vue-coach-app-9f21c-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=${token}`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData),

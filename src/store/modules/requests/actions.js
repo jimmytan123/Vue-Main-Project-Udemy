@@ -30,10 +30,11 @@ export default {
   },
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId;
+    const token = context.rootGetters.token;
 
     // Only show the data for the current coach
     const response = await fetch(
-      `https://vue-coach-app-9f21c-default-rtdb.firebaseio.com/requests/${coachId}.json`
+      `https://vue-coach-app-9f21c-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=${token}`
     );
 
     const responseData = await response.json();
