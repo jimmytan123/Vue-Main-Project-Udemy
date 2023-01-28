@@ -74,4 +74,12 @@ export default {
       tokenExpiration: responseData.expiresIn,
     });
   },
+  logout(context) {
+    // No need to send http request for logout since the server does not store any login info
+    context.commit('setUser', {
+      token: null,
+      userId: null,
+      tokenExpiration: null,
+    });
+  },
 };
