@@ -13,6 +13,23 @@ export default {
   components: {
     TheHeader,
   },
+  computed: {
+    didAutoLogout() {
+      return this.$store.getters.didAutoLogout;
+    }
+  },
+  created() {
+    // When loading the app, dispatch auto-login action to see if it can auto-login
+    this.$store.dispatch('autoLogin');
+  },
+  watch: {
+    didAutoLogout(curValue, oldValue) {
+      // If auto logout -- navigate to /coaches
+      if (curValue && curValue !== oldValue) {
+        this.$router.replace('/coaches');
+      }
+    }
+  }
 };
 </script>
 
