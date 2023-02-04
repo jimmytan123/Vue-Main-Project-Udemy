@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isLoading">
     <section>
       <base-card>
         <h2>{{ fullName }}</h2>
@@ -35,6 +35,7 @@ export default {
   data() {
     return {
       selectedCoach: null,
+      isLoading: false,
     };
   },
   computed: {
@@ -54,10 +55,25 @@ export default {
       return this.$route.path + '/' + this.id + '/contact';
     },
   },
-  created() {
-    this.selectedCoach = this.$store.getters['coaches/coaches'].find(
-      (coach) => coach.id === this.id
+  async created() {
+    this.isLoading = true;
+
+    // await this.$store.dispatch('coaches/loadCoaches', {
+    //   forceRefresh: true,
+    // });
+
+    // this.selectedCoach = this.$store.getters['coaches/coaches'].find(
+    //   (coach) => coach.id === this.id
+    // );
+
+    // Fetch the single coach based on id
+    const response = await fetch(
+      `https://vue-coach-app-9f21c-default-rtdb.firebaseio.com/coaches/${this.id}.json`
     );
+
+    this.selectedCoach = await response.json();
+
+    this.isLoading = false;
   },
 };
 </script>
